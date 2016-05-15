@@ -1,0 +1,46 @@
+[
+    {
+        "name": "fiscal-year",
+        "repository": "/var/git/stable/fiscal-year",
+        "upstreams": ["maven-build-process"]
+    },
+    {
+        "name": "generic-types",
+        "repository": "/var/git/stable/generic-types",
+        "upstreams": ["maven-build-process"]
+    },
+    {
+        "name": "null-analysis",
+        "repository": "/var/git/stable/null-analysis",
+        "upstreams": ["maven-build-process"]
+    },
+    {
+        "name": "reguloj",
+        "repository": "/var/git/stable/reguloj",
+        "upstreams": ["maven-build-process"]
+    },
+    {
+        "name": "suppress-warnings",
+        "repository": "/var/git/stable/suppress-warnings",
+        "upstreams": ["maven-build-process"]
+    },
+    {
+        "name": "storage-units",
+        "repository": "/var/git/stable/storage-units",
+        "upstreams": ["maven-build-process"]
+    },
+    {
+        "name": "maven-build-process",
+        "repository": "/var/git/prototypes/maven-build-process"
+    },
+    {
+        "name": "memoization.java",
+        "repository": "/var/git/prototypes/memoization.java",
+        "upstreams": ["maven-build-process"]
+    },
+    {
+        "name": "yosql",
+        "repository": "/var/git/prototypes/yosql",
+        "upstreams": ["maven-build-process"]
+    }
+]
