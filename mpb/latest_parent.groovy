@@ -9,27 +9,31 @@ def json = slurper.parseText(jsonText)
 
 json.each {
     def project = it
-    job("$jobBasePath/$project.name (with latest parent)") {
-        scm {
-            git(project.repository)
-        }
-        triggers {
-            scm("H/60 * * * *")
-        }
-        steps {
-            maven {
-                goals("versions:update-parent")
-                properties("generateBackupPoms": false)
-                mavenInstallation("maven-3.3.9")
-                providedGlobalSettings("talk-to-docker-nexus")
+    if (!"maven-build-process".equals(project.name)) {
+        job("$jobBasePath/$project.name (with latest parent)") {
+            scm {
+                git(project.repository)
             }
-        }
-        steps {
-            maven {
-                goals("clean")
-                goals("install")
-                mavenInstallation("maven-3.3.9")
-                providedGlobalSettings("talk-to-docker-nexus")
+            triggers {
+                project.upstreams.each {
+                    upstream("$jobBasePath/$it (deploy to local-nexus)", "SUCCESS")
+                }
+            }
+            steps {
+                maven {
+                    goals("versions:update-parent")
+                    properties("generateBackupPoms": false)
+                    mavenInstallation("maven-3.3.9")
+                    providedGlobalSettings("talk-to-docker-nexus")
+                }
+            }
+            steps {
+                maven {
+                    goals("clean")
+                    goals("verify")
+                    mavenInstallation("maven-3.3.9")
+                    providedGlobalSettings("talk-to-docker-nexus")
+                }
             }
         }
     }
