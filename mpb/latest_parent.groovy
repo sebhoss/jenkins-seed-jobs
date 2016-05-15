@@ -57,3 +57,51 @@ listView("$jobBasePath/Latest Parent") {
         buildButton()
     }
 }
+
+listView("$jobBasePath/Failure") {
+    description('All failing jobs of stable modules')
+    jobs {
+        json.each {
+            name("${it.name}_with_latest_parent")
+        }
+    }
+    jobFilters {
+        status {
+            status(Status.UNSTABLE, Status.FAILED, Status.ABORTED)
+        }
+    }
+    recurse(true)
+    columns {
+        status()
+        weather()
+        name()
+        lastSuccess()
+        lastFailure()
+        lastDuration()
+        buildButton()
+    }
+}
+
+listView("$jobBasePath/Success") {
+    description('All successful jobs of stable modules')
+    jobs {
+        json.each {
+            name("${it.name}_with_latest_parent")
+        }
+    }
+    jobFilters {
+        status {
+            status(Status.STABLE)
+        }
+    }
+    recurse(true)
+    columns {
+        status()
+        weather()
+        name()
+        lastSuccess()
+        lastFailure()
+        lastDuration()
+        buildButton()
+    }
+}
