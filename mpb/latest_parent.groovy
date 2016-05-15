@@ -10,13 +10,13 @@ def json = slurper.parseText(jsonText)
 json.each {
     def project = it
     if (!"maven-build-process".equals(project.name)) {
-        job("$jobBasePath/$project.name (with latest parent)") {
+        job("$jobBasePath/${project.name}_with_latest_parent") {
             scm {
                 git(project.repository)
             }
             triggers {
                 project.upstreams.each {
-                    upstream("$jobBasePath/$it (deploy to local-nexus)", "SUCCESS")
+                    upstream("$jobBasePath/${it}_deploy_to_local-nexus", "SUCCESS")
                 }
             }
             steps {
@@ -43,7 +43,7 @@ listView("$jobBasePath/Latest Parent") {
     description("Jobs running with the latest version of the maven-build-process")
     jobs {
         json.each {
-            name("$it.name (with latest parent)")
+            name("${it.name}_with_latest_parent")
         }
     }
     recurse(true)

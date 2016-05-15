@@ -13,7 +13,7 @@ def json = slurper.parseText(jsonText)
 
 json.each {
     def project = it
-    job("$jobBasePath/$project.name (deploy to local-nexus)") {
+    job("$jobBasePath/${project.name}_deploy_to_local-nexus") {
         scm {
             git(project.repository)
         }
@@ -43,7 +43,7 @@ listView("$jobBasePath/Deployments") {
     description("All deploying jobs of modules that use the maven-build-process")
     jobs {
         json.each {
-            name("$it.name (deploy to local-nexus)")
+            name("${it.name}_deploy_to_local-nexus")
         }
     }
     recurse(true)
