@@ -20,6 +20,9 @@ base.eachDir() { directory ->
             scm {
                 git(path)
             }
+            triggers {
+                scm('H/15 * * * *')
+            }
             steps {
                 maven {
                     goals("clean")
