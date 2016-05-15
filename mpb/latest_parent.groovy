@@ -17,6 +17,7 @@ json.each {
             project.upstreams.each {
                 upstream("$jobBasePath/${it}_deploy_to_local-nexus", "SUCCESS")
             }
+            cron("@daily")
         }
         steps {
             maven {
