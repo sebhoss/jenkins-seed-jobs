@@ -39,6 +39,11 @@
         "upstreams": ["maven-build-process"]
     },
     {
+        "name": "truth-property-proposition",
+        "repository": "/var/git/stable/truth-property-proposition",
+        "upstreams": ["maven-build-process"]
+    },
+    {
         "name": "yosql",
         "repository": "/var/git/prototypes/yosql",
         "upstreams": ["maven-build-process"]
