@@ -14,6 +14,10 @@ def json = slurper.parseText(jsonText)
 json.each {
     def project = it
     job("$jobBasePath/${project.name}_deploy_to_local-nexus") {
+        logRotator {
+            numToKeep(5)
+            daysToKeep(7)
+        }
         scm {
             git(project.repository)
         }

@@ -10,6 +10,11 @@ def json = slurper.parseText(jsonText).findAll { !"maven-build-process".equals(i
 json.each {
     def project = it
     job("$jobBasePath/${project.name}_with_latest_parent") {
+        blockOnUpstreamProjects()
+        logRotator {
+            numToKeep(5)
+            daysToKeep(7)
+        }
         scm {
             git(project.repository)
         }
