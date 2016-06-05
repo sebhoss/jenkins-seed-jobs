@@ -31,7 +31,7 @@
     },
     {
         "name": "maven-build-process",
-        "repository": "/var/git/prototypes/maven-build-process"
+        "repository": "/var/git/stable/maven-build-process"
     },
     {
         "name": "memoization.java",
