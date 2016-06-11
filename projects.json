@@ -1,5 +1,17 @@
 [
     {
+        "name": "bc-clj",
+        "repository": "/var/git/stable/bc-clj"
+    },
+    {
+        "name": "def-clj",
+        "repository": "/var/git/stable/def-clj"
+    },
+    {
+        "name": "finj",
+        "repository": "/var/git/stable/finj"
+    },
+    {
         "name": "fiscal-year",
         "repository": "/var/git/stable/fiscal-year",
         "upstreams": ["maven-build-process"]

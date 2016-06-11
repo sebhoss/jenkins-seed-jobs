@@ -1,17 +1,11 @@
 import groovy.json.JsonSlurper
 
-def jobBasePath = "mpb"
-
-folder(jobBasePath) {
-    description 'Contains modules build w/ the maven-build-process'
-}
-
-def projectCatalog = new File("/var/git/stable/jenkins-jobs-setup/mpb/projects.json")
+def projectCatalog = new File("/var/git/stable/jenkins-jobs-setup/projects.json")
 def slurper = new JsonSlurper()
 def jsonText = projectCatalog.getText()
 def json = slurper.parseText(jsonText)
 
-listView("$jobBasePath/Deployments") {
+listView("Deployments") {
     description("All deploying jobs of modules that use the maven-build-process")
     jobs {
         json.each {
@@ -30,7 +24,7 @@ listView("$jobBasePath/Deployments") {
     }
 }
 
-listView("$jobBasePath/Latest Parent") {
+listView("Latest Parent") {
     description("All deploying jobs of modules that use the maven-build-process")
     jobs {
         json.each {
@@ -49,7 +43,7 @@ listView("$jobBasePath/Latest Parent") {
     }
 }
 
-listView("$jobBasePath/Failure") {
+listView("Failure") {
     description('All failing jobs of deploying jobs')
     jobs {
         json.each {
@@ -77,7 +71,7 @@ listView("$jobBasePath/Failure") {
     }
 }
 
-listView("$jobBasePath/Success") {
+listView("Success") {
     description('All successful jobs of deploying jobs')
     jobs {
         json.each {

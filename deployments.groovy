@@ -1,19 +1,13 @@
 import groovy.json.JsonSlurper
 
-def jobBasePath = "mpb"
-
-folder(jobBasePath) {
-    description 'Contains modules build w/ the maven-build-process'
-}
-
-def projectCatalog = new File("/var/git/stable/jenkins-jobs-setup/mpb/projects.json")
+def projectCatalog = new File("/var/git/stable/jenkins-jobs-setup/projects.json")
 def slurper = new JsonSlurper()
 def jsonText = projectCatalog.getText()
 def json = slurper.parseText(jsonText)
 
 json.each {
     def project = it
-    job("$jobBasePath/${project.name}_deploy_to_local-nexus") {
+    job("${project.name}_deploy_to_local-nexus") {
         logRotator {
             numToKeep(5)
             daysToKeep(7)
@@ -43,8 +37,8 @@ json.each {
     }
 }
 
-listView("$jobBasePath/Deployments") {
-    description("All deploying jobs of modules that use the maven-build-process")
+listView("Deployments") {
+    description("All jobs that deploy artifacts")
     jobs {
         json.each {
             name("${it.name}_deploy_to_local-nexus")
