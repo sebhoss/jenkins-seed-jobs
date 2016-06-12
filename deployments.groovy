@@ -34,6 +34,12 @@ json.each {
                 providedGlobalSettings("talk-to-docker-nexus")
             }
         }
+        publishers {
+            irc {
+                strategy("ALL")
+                notificationMessage("SummaryOnly")
+            }
+        }
     }
 }
 
