@@ -7,7 +7,7 @@ def json = slurper.parseText(jsonText).findAll { !"maven-build-process".equals(i
 
 json.each {
     def project = it
-    job("${project.name}_with_latest_parent") {
+    job("${project.name}_with_latest_snapshot_parent") {
         blockOnUpstreamProjects()
         logRotator {
             numToKeep(5)
@@ -27,6 +27,41 @@ json.each {
                 goals("versions:update-parent")
                 properties("generateBackupPoms": false)
                 properties("allowSnapshots": true)
+                mavenInstallation("maven-latest")
+                providedGlobalSettings("talk-to-docker-nexus")
+            }
+        }
+        steps {
+            maven {
+                goals("clean")
+                goals("verify")
+                mavenInstallation("maven-latest")
+                providedGlobalSettings("talk-to-docker-nexus")
+            }
+        }
+        publishers {
+            irc {
+                strategy("ALL")
+                notificationMessage("SummaryOnly")
+            }
+        }
+    }
+    job("${project.name}_with_latest_stable_parent") {
+        blockOnUpstreamProjects()
+        logRotator {
+            numToKeep(5)
+            daysToKeep(7)
+        }
+        scm {
+            git(project.repository)
+        }
+        triggers {
+            cron("@daily")
+        }
+        steps {
+            maven {
+                goals("versions:update-parent")
+                properties("generateBackupPoms": false)
                 mavenInstallation("maven-latest")
                 providedGlobalSettings("talk-to-docker-nexus")
             }
