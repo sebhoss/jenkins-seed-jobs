@@ -3,11 +3,12 @@ import groovy.json.JsonSlurper
 def projectCatalog = new File("/var/git/stable/jenkins-jobs-setup/projects.json")
 def slurper = new JsonSlurper()
 def jsonText = projectCatalog.getText()
-def json = slurper.parseText(jsonText).findAll { !"maven-build-process".equals(it.name) }
+def json = slurper.parseText(jsonText).findAll { it.mbp }
 
 json.each {
     def project = it
-    job("${project.name}_with_latest_snapshot_parent") {
+    folder(project.name)
+    job("${project.name}/${project.name}_with_latest_snapshot_parent") {
         blockOnUpstreamProjects()
         logRotator {
             numToKeep(5)
@@ -17,9 +18,7 @@ json.each {
             git(project.repository)
         }
         triggers {
-            project.upstreams.each {
-                upstream("${it}_deploy_to_local-nexus", "SUCCESS")
-            }
+            upstream("maven-build-process/maven-build-process_deploy_to_local-nexus", "SUCCESS")
             cron("@daily")
         }
         steps {
@@ -46,7 +45,7 @@ json.each {
             }
         }
     }
-    job("${project.name}_with_latest_stable_parent") {
+    job("${project.name}/${project.name}_with_latest_stable_parent") {
         blockOnUpstreamProjects()
         logRotator {
             numToKeep(5)
