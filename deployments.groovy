@@ -22,7 +22,7 @@ json.each {
             maven {
                 goals("clean")
                 goals("deploy")
-                mavenInstallation("maven-3.3.9")
+                mavenInstallation("maven-latest")
                 providedGlobalSettings("talk-to-docker-nexus")
             }
         }
@@ -30,7 +30,7 @@ json.each {
             maven {
                 goals("sonar:sonar")
                 properties("sonar.host.url": "http://sonar:9000")
-                mavenInstallation("maven-3.3.9")
+                mavenInstallation("maven-latest")
                 providedGlobalSettings("talk-to-docker-nexus")
             }
         }

@@ -26,7 +26,7 @@ json.each {
             maven {
                 goals("versions:update-parent")
                 properties("generateBackupPoms": false)
-                mavenInstallation("maven-3.3.9")
+                mavenInstallation("maven-latest")
                 providedGlobalSettings("talk-to-docker-nexus")
             }
         }
@@ -34,7 +34,7 @@ json.each {
             maven {
                 goals("clean")
                 goals("verify")
-                mavenInstallation("maven-3.3.9")
+                mavenInstallation("maven-latest")
                 providedGlobalSettings("talk-to-docker-nexus")
             }
         }
