@@ -15,37 +15,46 @@
         "name": "fiscal-year",
         "repository": "/var/git/stable/fiscal-year",
         "mbp": true,
-        "upstreams": ["maven-build-process"]
+        "upstreams": []
     },
     {
         "name": "generic-types",
         "repository": "/var/git/stable/generic-types",
         "mbp": true,
-        "upstreams": ["maven-build-process"]
+        "upstreams": []
     },
     {
         "name": "null-analysis",
         "repository": "/var/git/stable/null-analysis",
         "mbp": true,
-        "upstreams": ["maven-build-process"]
+        "upstreams": []
     },
     {
         "name": "reguloj",
         "repository": "/var/git/stable/reguloj",
         "mbp": true,
-        "upstreams": ["maven-build-process"]
+        "upstreams": [
+            {
+                "name": "suppress-warnings",
+                "include": "de.xn--ho-hia.quality:suppress-warnings:*"
+            },
+            {
+                "name": "null-analysis",
+                "include": "de.xn--ho-hia.quality:null-analysis:*"
+            }
+        ]
     },
     {
         "name": "suppress-warnings",
         "repository": "/var/git/stable/suppress-warnings",
         "mbp": true,
-        "upstreams": ["maven-build-process"]
+        "upstreams": []
     },
     {
         "name": "storage-units",
         "repository": "/var/git/stable/storage-units",
         "mbp": true,
-        "upstreams": ["maven-build-process"]
+        "upstreams": []
     },
     {
         "name": "maven-build-process",
@@ -55,18 +64,18 @@
         "name": "memoization.java",
         "repository": "/var/git/prototypes/memoization.java",
         "mbp": true,
-        "upstreams": ["maven-build-process"]
+        "upstreams": []
     },
     {
         "name": "truth-property-proposition",
         "repository": "/var/git/stable/truth-property-proposition",
         "mbp": true,
-        "upstreams": ["maven-build-process"]
+        "upstreams": []
     },
     {
         "name": "yosql",
         "repository": "/var/git/prototypes/yosql",
         "mbp": true,
-        "upstreams": ["maven-build-process"]
+        "upstreams": []
     }
 ]
