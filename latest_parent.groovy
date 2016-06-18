@@ -28,7 +28,7 @@ json.each {
                 properties("generateBackupPoms": false)
                 properties("allowSnapshots": true)
                 mavenInstallation("maven-latest")
-                providedGlobalSettings("talk-to-docker-nexus")
+                providedGlobalSettings("talk-to-local-nexus")
             }
         }
         steps {
@@ -36,7 +36,7 @@ json.each {
                 goals("clean")
                 goals("verify")
                 mavenInstallation("maven-latest")
-                providedGlobalSettings("talk-to-docker-nexus")
+                providedGlobalSettings("talk-to-local-nexus")
             }
         }
         publishers {
@@ -63,7 +63,7 @@ json.each {
                 goals("versions:update-parent")
                 properties("generateBackupPoms": false)
                 mavenInstallation("maven-latest")
-                providedGlobalSettings("talk-to-docker-nexus")
+                providedGlobalSettings("talk-to-local-nexus")
             }
         }
         steps {
@@ -71,7 +71,7 @@ json.each {
                 goals("clean")
                 goals("verify")
                 mavenInstallation("maven-latest")
-                providedGlobalSettings("talk-to-docker-nexus")
+                providedGlobalSettings("talk-to-local-nexus")
             }
         }
         publishers {

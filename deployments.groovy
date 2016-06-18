@@ -23,7 +23,7 @@ json.each {
                 goals("clean")
                 goals("deploy")
                 mavenInstallation("maven-latest")
-                providedGlobalSettings("talk-to-docker-nexus")
+                providedGlobalSettings("talk-to-local-nexus")
             }
         }
         steps {
@@ -31,7 +31,7 @@ json.each {
                 goals("sonar:sonar")
                 properties("sonar.host.url": "http://sonar:9000")
                 mavenInstallation("maven-latest")
-                providedGlobalSettings("talk-to-docker-nexus")
+                providedGlobalSettings("talk-to-local-nexus")
             }
         }
         publishers {
