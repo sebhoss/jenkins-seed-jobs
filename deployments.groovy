@@ -31,6 +31,7 @@ json.each {
             maven {
                 goals("sonar:sonar")
                 properties("sonar.host.url": "http://sonar:9000")
+                properties("sonar.pitest.mode": "reuseReport")
                 mavenInstallation("maven-latest")
                 providedGlobalSettings("talk-to-local-nexus")
             }
