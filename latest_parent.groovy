@@ -26,6 +26,7 @@ json.each {
             maven {
                 goals("versions:update-parent")
                 properties("generateBackupPoms": false)
+                properties("allowSnapshots": true)
                 mavenInstallation("maven-latest")
                 providedGlobalSettings("talk-to-docker-nexus")
             }
